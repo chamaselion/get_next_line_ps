@@ -87,7 +87,7 @@ char	*get_next_line(int fd)
 	if (!gnl.buffer[1])
 		return (gnl.buffer[1] = NULL, NULL);
 	if (initialize_buffer0(&gnl) == 0)
-		return (free(gnl.buffer[1]), NULL);
+		return (free(gnl.buffer[1]), gnl. buffer[1] = 0, NULL);
 	while (gnl.newline_pos == NULL)
 	{
 		gnl.bytes_read = read(fd, gnl.buffer[1], BUFFER_SIZE);
