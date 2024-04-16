@@ -64,7 +64,7 @@ int	process_buffer(t_gnl *gnl)
 	{
 		gnl->line = ft_strndup(gnl->buffer[0], ft_strlen(gnl->buffer[0]));
 		if (!gnl->line)
-			return (0);
+			return (gnl->line = NULL, 0);
 		*gnl->buffer[0] = '\0';
 	}
 	if (gnl->bytes_read <= 0)
