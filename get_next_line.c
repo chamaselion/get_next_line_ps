@@ -86,8 +86,6 @@ char	*get_next_line(int fd)
 	if (initialize_buffer0(&gnl) == 0)
 		return (NULL);
     gnl.buffer[1] = malloc(BUFFER_SIZE + 1);
-	if (!gnl.buffer[1])
-		return (gnl.buffer[1] = NULL, NULL);
 	while (gnl.newline_pos == NULL)
 	{
 		gnl.bytes_read = read(fd, gnl.buffer[1], BUFFER_SIZE);
