@@ -83,7 +83,6 @@ char	*get_next_line(int fd)
 	static t_gnl	gnl;
 
 	gnl.line = NULL;
-	gnl.buffer[1] = malloc(BUFFER_SIZE + 1);
 	if (!gnl.buffer[1])
 		return (gnl.buffer[1] = NULL, NULL);
 	if (initialize_buffer0(&gnl) == 0)
@@ -94,6 +93,7 @@ char	*get_next_line(int fd)
 		if (gnl.bytes_read <= 0)
 			break ;
 		gnl.buffer[1][gnl.bytes_read] = '\0';
+        gnl.buffer[1] = malloc(BUFFER_SIZE + 1);
 		gnl.buffer[0] = ft_strjoin(gnl.buffer[0], gnl.buffer[1]);
 		if (gnl.buffer[0] == NULL)
 			return (free(gnl.buffer[1]), NULL);
@@ -101,7 +101,8 @@ char	*get_next_line(int fd)
 	}
 	if (process_buffer(&gnl) == 0)
 		return (free(gnl.buffer[0]), gnl.buffer[0] = NULL, NULL);
-	if (gnl.bytes_read < 0)
+	*line = gnl.line;
+    if (gnl.bytes_read < 0)
 		return (free(gnl.line), free(gnl.buffer[0]), NULL);
 	return (gnl.line);
 }
