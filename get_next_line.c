@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 
 	gnl.line = NULL;
 	if (initialize_buffer0(&gnl) == 0)
-		return (free(gnl.buffer[1]), gnl. buffer[1] = 0, NULL);
+		return (NULL);
     gnl.buffer[1] = malloc(BUFFER_SIZE + 1);
 	if (!gnl.buffer[1])
 		return (gnl.buffer[1] = NULL, NULL);
